@@ -1,0 +1,22 @@
+version: '3'
+services:
+  
+  api:
+    container_name: backmynumer
+    restart: always
+    build: ./backend
+    ports:
+      - '5000:5000'
+    depends_on:
+      - mongo
+  app:
+    container_name: docker-node-mongo
+    restart: always
+    build: ./client
+    ports:
+      - '3000:3000'
+  mongo:
+    container_name: mongo
+    image: mongo
+    ports:
+      - '27017:27017'
